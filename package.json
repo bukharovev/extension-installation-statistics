@@ -1,0 +1,14 @@
+{
+  "name": "extension-installation-statistics",
+  "version": "1.0.0",
+  "description": "",
+  "main": "csv.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csvtojson": "^2.0.10"
+  }
+}
