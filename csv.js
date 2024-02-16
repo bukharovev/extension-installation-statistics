@@ -1,5 +1,6 @@
 import csv from 'csvtojson'
 import { join } from 'path'
+import { homedir } from 'node:os';
 
 const tier1CountriesListByName = [
   'Australia',
@@ -51,17 +52,18 @@ const convert = async (pathToCSV) => {
   }, {})
 }
 
-const installsPath = join('..', '..', 'Downloads', 'installs.csv')
+const installsPath = join(homedir(), 'Downloads', 'installs.csv')
 const installs = await convert(installsPath)
-// console.log('installs = ', installs);
 
-const uninstallsPath = join('..', '..', 'Downloads', 'uninstalls.csv')
+const uninstallsPath = join(homedir(), 'Downloads', 'uninstalls.csv')
 const uninstalls = await convert(uninstallsPath)
-// console.log('uninstalls = ', uninstalls)
 
 const result = Object.entries(installs).reduce((acc, [countryName, numOfInstalls]) => {
   const numOfUninstalls = uninstalls[countryName];
   acc[countryName] = numOfInstalls - numOfUninstalls
   return acc;
 }, {});
-const tier1CountriesUsers = Object.values(result).reduce((acc, num) => acc + num, 0);
+
+const tier1CountriesUsersCount = Object.values(result).reduce((acc, num) => acc + num, 0);
+
+console.log({ installs, uninstalls, result, tier1CountriesUsersCount })
