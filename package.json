@@ -9,7 +9,13 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "csvtojson": "^2.0.10"
+    "@types/node": "^20.11.22",
+    "country-list": "^2.3.0",
+    "csvtojson": "^2.0.10",
+    "yargs": "^17.7.2"
   },
-  "type": "module"
+  "type": "module",
+  "bin": {
+    "count_installs": "./cli.js"
+  }
 }
